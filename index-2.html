@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BMI kalkulátor</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+<link href="res/fontawesome/css/all.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="res/css/bs-stepper.min.css">
+<link rel="stylesheet" href="res/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="res/css/bootstrap-slider.min.css">
+<link href="res/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+	<div class="row align-items-center">
+		<div class="col-xl-10 offset-lx-1 col-md-10 offset-md-1">
+			<div id="splash">
+				<div id="splash_inline"><img src="res/images/splash.jpg" alt="splash"></div>
+			</div>
+			<div id="calculator" class="">
+				<h1 class="mb-4">BMI kalkulátor</h1>
+				
+				<!-- STEPPER -->
+				<div class="bs-stepper">
+					<!-- stepper-header -->
+					<div class="bs-stepper-header" role="tablist"> 
+						<div class="step" data-target="#part1">
+							<div class="step-trigger" role="tab" aria-controls="part1" id="part1-trigger">
+								<span class="bs-stepper-circle">1</span>
+								<span class="bs-stepper-label"></span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step" data-target="#part2">
+							<div class="step-trigger" role="tab" aria-controls="part2" id="part2-trigger">
+								<span class="bs-stepper-circle">2</span>
+								<span class="bs-stepper-label"></span>
+							</div>
+						</div>
+						<div class="line"></div>
+						<div class="step" data-target="#part3">
+							<div class="step-trigger" role="tab" aria-controls="part3" id="part3-trigger">
+								<span class="bs-stepper-circle">3</span> <span class="bs-stepper-label"></span>
+							</div>
+						</div>
+					</div>
+					<!-- stepper-content -->
+					<div class="bs-stepper-content"> 
+						<div id="part1" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+							<div class="page_c clearfix">
+								<div class="form-group row">
+									<label for="firstname" class="col-sm-2 col-form-label">Keresztneved</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="firstname" placeholder="Keresztnév">
+										<div class="valid-feedback"> </div>
+										<div class="invalid-feedback">Add meg keresztneved!</div>
+									</div>
+								</div>
+								
+								<div class="form-group row">
+									<label for="age" class="col-sm-2 col-form-label">Életkorod</label>
+									<div class="col-sm-10">
+										<input id="age" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0"/>
+										<span id="ageCurrentSliderValLabel"> <span id="ageval">0</span> év</span>
+										<div class="valid-feedback"> </div>
+										<div class="invalid-feedback">Add meg életkorod!</div>
+									</div>
+								</div>
+								
+								<div class="form-group row">
+									<label for="gender1" class="col-sm-2 col-form-label">Nemed</label>
+									<div class="col-sm-10">
+										<div class="customRadio fr custom-control-inline">
+											<input type="radio" id="gender-male" name="gender" value="male" >
+											<label for="gender-male"><i class="fas fa-mars"></i> Férfi</label>
+										</div>
+										<div class="customRadio sr custom-control-inline">
+											<input type="radio" id="gender-female" name="gender" value="female">
+											<label for="gender-female"><i class="fas fa-venus"></i> Nő</label>
+										</div>
+										<div class="valid-feedback"> </div>
+										<div class="invalid-feedback">Add meg nemed!</div>
+									</div>
+								</div>
+								<div class="userinfo clearfix">
+									A Te neved <span class="firstName"></span>, <span class="age"></span> éves vagy és <span class="gender"></span>. 
+									A testsúlyod <span class="weight"></span> kg és <span class="height"></span> cm magas vagy. 
+									Amennyiben szeretnéd megtudni a BMI értékedet, kattints a tovább gombra.<br>
+									<button class="btn btn-secondary float-right mt-3" data-toggle="modal" data-target="#resetModal"> Törlés </button>
+								</div>
+							</div>
+							<div class="page_buttons clearfix">
+								<button id="btn_forward_1" class="btn btn-primary float-right"> Következő<i class="fas fa-angle-right right"></i> </button>
+							</div>
+						</div>
+						
+						<div id="part2" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+							<div class="page_c clearfix">
+								<div class="form-group row">
+									<label for="height" class="col-sm-2 col-form-label">Magasságod</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control d-inline onlynum" id="height" placeholder="Magasságod"> <span class="d-inline"> cm</span>
+										<div class="valid-feedback"> </div>
+										<div class="invalid-feedback">Add meg magasságod!</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="weight" class="col-sm-2 col-form-label">Testsúlyod</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control d-inline onlynum" id="weight" placeholder="Testsúlyod"> <span class="d-inline"> kg</span>
+										<div class="valid-feedback"> </div>
+										<div class="invalid-feedback">Add meg testsúlyod!</div>
+									</div>
+								</div>
+								<div class="userinfo clearfix">
+									A Te neved <span class="firstName"></span>, <span class="age"></span> éves vagy és <span class="gender"></span>. 
+									A testsúlyod <span class="weight"></span> kg és <span class="height"></span> cm magas vagy. 
+									Amennyiben szeretnéd megtudni a BMI értékedet, kattints a befejezés gombra.<br>
+									<button class="btn btn-secondary float-right mt-3" data-toggle="modal" data-target="#resetModal"> Törlés </button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 mb-4">
+									<button id="btn_backward_2" class="btn btn-primary"> <i class="fas fa-angle-left left"></i>Vissza </button>
+								</div>
+								<div class="col-md-4 offset-md-4 mb-4">
+									<button id="btn_forward_2" class=" btn btn-primary"> Befejezés<i class="fas fa-angle-right right"></i> </button>
+								</div>
+							</div>
+						</div>
+						
+						<div id="part3" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+							<div class="page_c clearfix">
+								
+								<div class="userinfo_final text-center pt-5">
+									A Te BMI értéked<br>
+									<span id="bmiNumber"></span>,<br>
+									ami alapján a(z) <span id="bmiClass"></span> csoportba tartozol.
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 mb-4">
+									<button id="btn_backward_3" class="btn btn-primary float-left"> <i class="fas fa-angle-left left"></i>Kitöltöm újra</button>
+								</div>
+								<div class="col-md-4 offset-md-4 mb-4">
+									<button id="btn_forward_3" class="btn btn-primary float-right">Módosítom az előzőt<i class="fas fa-angle-right right"></i> </button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="resetModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Adatok törlése</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					Biztosan törölni kívánja a megadott adatokat?
+				</div>
+				<div class="modal-footer clearfix">
+					<button type="button" class="btn btn-secondary float-left" data-dismiss="modal">Nem</button>
+					<button type="button" class="btn btn-primary float-right clear-all" data-dismiss="modal">Igen</button>
+				</div>
+			</div>
+		</div>
+	</div>
+  	
+</div>
+	
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>	
+<script src="res/js/bs-stepper.min.js"></script>
+<script src="res/js/bootstrap-select.min.js"></script>
+<script src="res/js/bootstrap-slider.min.js"></script>
+<script src="res/js/js-splash.min.js"></script>	
+<script src="res/js/app2.js"></script>
+</html>
